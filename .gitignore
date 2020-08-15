@@ -32,4 +32,4 @@ build
 .gradle
 org.eclipse.jdt.core.prefs
 *.o.d
-.json
+*.json

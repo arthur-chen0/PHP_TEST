@@ -1,20 +1,22 @@
 <?php
+error_reporting(E_ALL); 
+ini_set('display_errors', 1);
 
 class production{
 
 static $productionMap;
 
 function addItem($item, $price){
-	$this->productionMap[$item] = $price; 
+	self :: $productionMap[$item] = $price; 
 }
 
 function getPrice($item){
-	$price = $this->productionMap[$item];
+	$price = self :: $productionMap[$item];
 	return $price;
 }
 
 function getAllItem(){
-	return $this->productionMap;
+	return self :: $productionMap;
 }
 
 
