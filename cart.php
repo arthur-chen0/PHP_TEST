@@ -1,5 +1,5 @@
 <?php
-include ("error_logs.php");
+// include ("error_logs.php");
 class cart{
 
 static $cartMap;
@@ -13,7 +13,7 @@ function totalPrice(){
 	$totalPrice;
 	foreach ($cartMap as $price) {
 		$totalPrice += $price;
-	}
+	}	
 	// $logs->log("Total price is " . $totalPrice);
 	return $totalPrice;
 }
