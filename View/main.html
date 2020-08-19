@@ -29,7 +29,7 @@
 				</thead>
 				<tbody>
 					
-					<?php foreach ($map as $item => $price){ ?>
+					<?php foreach ($list as $item => $price){ ?>
 						<tr>
 							<td></td>
 							<td><?php echo $item; ?></td>
@@ -52,7 +52,7 @@
 
 </div>
 
-<?php foreach ($map as $item => $price){ ?>
+<?php foreach ($list as $item => $price){ ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -61,10 +61,11 @@
             $("#" + "<?php echo $item ?>").click(function() { //ID 為 submitExample 的按鈕被點擊時
                 $.ajax({
                     type: "POST", //傳送方式
-                    url: "service.php", //傳送目的地
+                    url: "/Controller/eventListener.php", //傳送目的地
                     // dataType: "json", //資料格式
                     data: { //傳送資料
-                    	'action': "<?php echo $item ?>"
+                    	'item': "<?php echo $item; ?>",
+                    	'price': "<?php echo $price; ?>"
                     },
                     success: function(data) {
                        alert('Data from the server' + data);
@@ -85,7 +86,7 @@
             $("#Checkout").click(function() { 
                 $.ajax({
                     type: "POST", 
-                    url: "service.php", 
+                    url: "/Controller/eventListener.php", 
                     // dataType: "json", //資料格式
                     data: { 
                     	'action': "Checkout"
