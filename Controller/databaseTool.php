@@ -1,28 +1,47 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/Controller/DB_config.php";
 
-    function create_connection()
-  {
-  	global $_DB;
-    $link = mysqli_connect($_DB['host'], $_DB['username'], $_DB['password']);
-    // var_dump($link);
-    // echo "<br>";
-	  
-    mysqli_query($link, "SET NAMES utf8");
-			   	
-    return $link;
-  }
-	
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Config/DB_config.ini.php";
 
-  function execute_sql($link, $sql)
-  {
-  	global $_DB;
-    mysqli_select_db($link, $_DB['dbname']);
-    //   or die("開啟資料庫失敗: " . mysqli_error($link));
-						 
-    $result = mysqli_query($link, $sql);
-    // var_dump($result);
-		
-    return $result;
-  }
+class databaseTool{
+
+    private static $instance;
+    private $dbConfig;
+    private $db;
+
+    private function __construct()
+    {
+        global $dbDefauleConfig;
+        $this->dbConfig = $dbDefauleConfig;
+        // echo "From construct Host: " . $this->dbConfig['host'] . " User: " . $this->dbConfig['username'];
+        $this->db = $this->create_connection();
+    }
+
+    public static function getInstance()
+    {
+        if(!self::$instance instanceof self){
+            self::$instance = new self();
+        }
+        return self::$instance; 
+    }
+
+    private function create_connection()
+    {
+        $db;
+        $db = mysqli_connect($this->dbConfig['host'], $this->dbConfig['username'], $this->dbConfig['password']);
+    
+        mysqli_query($db, "SET NAMES utf8");
+          
+        return $db;
+    }
+  
+
+    public function execute_sql($sql)
+    {
+        mysqli_select_db($this->db, $this->dbConfig['dbname']);
+             
+        $result = mysqli_query($this->db, $sql);
+        return $result;
+    }
+
+}
 ?>
