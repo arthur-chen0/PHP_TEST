@@ -4,7 +4,8 @@ class cartModel{
 private static $cartMap;
 // static $logs = new error_logs;
 
-    public function addToCart($item, $price){
+    public function addToCart($item, $price)
+    {
         self :: $cartMap = unserialize($_COOKIE['cart']);
         // echo "get cookie from cart ";
         // var_dump(self :: $cartMap);
@@ -17,11 +18,13 @@ private static $cartMap;
 
     }
 
-    public function removeCart($item, $price){
+    public function removeCart($item, $price)
+    {
         self :: $cartMap[$item] = 0;
     }
 
-    public function totalPrice(){
+    public function totalPrice()
+    {
         $cartData = unserialize($_COOKIE['cart']);
         var_dump($cartData);
 

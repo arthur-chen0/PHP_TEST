@@ -4,9 +4,11 @@ ini_set('display_errors', 1);
 
 include_once($_SERVER['DOCUMENT_ROOT'] . "/Model/baseModel.php");
 
-class productionModel extends baseModel{
+class productionModel extends baseModel
+{
 
-    public function getAllProduction(){
+    public function getAllProduction()
+    {
         $result = $this->db->execute_sql("SELECT * FROM products");
 
         $total_records = mysqli_num_rows($result);
