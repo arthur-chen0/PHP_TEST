@@ -8,15 +8,6 @@ $productionController = new productionController();
 
 $productionController->listProduction();
 
- // $db = new databaseTool;
-
- // $link = create_connection();
- 
- // $map;
-
-// include_once ($_SERVER['DOCUMENT_ROOT'] . "/View/main.html");
-
-
 ?>
 
 

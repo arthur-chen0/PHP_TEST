@@ -1,14 +1,20 @@
 <?php 
 
-include($_SERVER['DOCUMENT_ROOT'] . "/Controller/service.php")
+include($_SERVER['DOCUMENT_ROOT'] . "/Controller/cartController.php");
+
+$cartController = new cartController();
 
 if (isset($_POST['item'])) {
 
-	if ($POST['item'] === "Checkout") {
-		totalPrice();
+	// echo "Receive event: " . $_POST['item'];
+
+	if ($_POST['item'] == "Checkout") {
+		$cartController->listCart();
 	}
 	else{
-		addToCart($POST['item'], $POST['price']);
+		$cartController->addToCart($_POST['item'], $_POST['price']);
 	}
 } 
+
  ?>
+

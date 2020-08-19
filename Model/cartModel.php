@@ -1,16 +1,20 @@
 <?php 
-// include ("error_logs.php");
-class cart{
+class cartModel{
 
 private static $cartMap;
 // static $logs = new error_logs;
 
     public function addToCart($item, $price){
         self :: $cartMap = unserialize($_COOKIE['cart']);
-        var_dump(self :: $cartMap);
+        // echo "get cookie from cart ";
+        // var_dump(self :: $cartMap);
+        // echo "<br>";
         self :: $cartMap[$item] = $price; 
-        setcookie("cart",serialize(self :: $cartMap),time() + (60 * 5));
+        setcookie("cart",serialize(self :: $cartMap),time() + (3600 * 5), "/");
+        // echo "get map after add ";
         var_dump(self :: $cartMap);
+        // echo "<br>";
+
     }
 
     public function removeCart($item, $price){
@@ -27,6 +31,12 @@ private static $cartMap;
         }	
 	// $logs->log("Total price is " . $totalPrice);
         return $totalPrice;
+    }
+
+    public function getCart()
+    {
+        $cartData = unserialize($_COOKIE['cart']);
+        return $cartData;
     }
 
 }
