@@ -1,21 +1,38 @@
 <?php 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/Model/products.php");
+
 class cartModel{
 
 private static $cartMap;
 // static $logs = new error_logs;
 
-    public function addToCart($item, $price)
+    // public function addToCart($item, $price)
+    // {
+    //     self :: $cartMap = unserialize($_COOKIE['cart']);
+    //     // echo "get cookie from cart ";
+    //     // var_dump(self :: $cartMap);
+    //     // echo "<br>";
+    //     self :: $cartMap[$item] = $price; 
+    //     setcookie("cart",serialize(self :: $cartMap),time() + (3600 * 5), "/");
+    //     echo "get map after add ";
+    //     var_dump(self :: $cartMap);
+    //     echo "<br>";
+
+    // }
+
+    public function addToCart($products)
     {
         self :: $cartMap = unserialize($_COOKIE['cart']);
-        // echo "get cookie from cart ";
-        // var_dump(self :: $cartMap);
-        // echo "<br>";
-        self :: $cartMap[$item] = $price; 
-        setcookie("cart",serialize(self :: $cartMap),time() + (3600 * 5), "/");
-        // echo "get map after add ";
-        var_dump(self :: $cartMap);
-        // echo "<br>";
 
+        echo "get from cookie ";
+        var_dump(self :: $cartMap);
+        echo "<br>";
+
+        self :: $cartMap[] = $products;
+        setcookie("cart",serialize(self :: $cartMap), time() + (60 * 5), "/");
+        echo "get map after add ";
+        var_dump(self :: $cartMap);
+        echo "<br>";
     }
 
     public function removeCart($item, $price)
@@ -39,6 +56,8 @@ private static $cartMap;
     public function getCart()
     {
         $cartData = unserialize($_COOKIE['cart']);
+        // echo "GetCart from cookie  ";
+        // var_dump($cartData);
         return $cartData;
     }
 

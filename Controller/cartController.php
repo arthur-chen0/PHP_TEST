@@ -8,10 +8,10 @@ class cartController
 {
     public $cartList;
 
-    public function addToCart($item, $price)
+    public function addToCart($product)
     {
     	$cart = new cartModel();
-    	$cart->addToCart($item, $price);
+    	$cart->addToCart($product);
     }
 
     public function totalPrice()
